@@ -40,6 +40,8 @@ stmt, _ := s.GetStmt("statement")
 s.Close()
 ```
 
+# Documentation
+[API Documentation](https://godoc.org/github.com/koepkeca/mysqlMgr)
 
 # Example program
 

@@ -87,7 +87,7 @@ func (mc MysqlConn) GetStmt(n string) (sm *sql.Stmt, e error) {
 //An error can be returned after the go routine is created, if this is the case,
 //this method shuts down the running routing therefore, if this function returns
 //any error, Close does not need to be called from the calling method/function.
-func New(cfg io.Reader) (m MysqlConn, err error) {
+func New(cfg io.Reader) (mc MysqlConn, err error) {
 	cc := &config{}
 	tb, e := ioutil.ReadAll(cfg)
 	if e != nil {
@@ -109,16 +109,16 @@ func New(cfg io.Reader) (m MysqlConn, err error) {
 		err = fmt.Errorf("MysqlConn SQL Initializaton Error: %s", e)
 		return
 	}
-	m.op = make(chan func(*store))
+	mc.op = make(chan func(*store))
 	//The listener starts here, any errors that are generated after this
 	//point must close the listening channel to avoid the go-routine running
 	//forever.
-	go m.loop()
-	e = m.setDb(db)
+	go mc.loop()
+	e = mc.setDb(db)
 	if e != nil {
 		err = fmt.Errorf("MysqlConn Database Connection Error: %s", e)
 		//failing to close here would leave the go routine running.
-		close(m.op)
+		close(mc.op)
 		return
 	}
 	return
