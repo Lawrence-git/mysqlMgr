@@ -1,5 +1,7 @@
 [![Go Report Card](https://goreportcard.com/badge/github.com/koepkeca/mysqlUtil)](https://goreportcard.com/report/github.com/koepkeca/mysqlMgr)
 
+[![GoDoc](https://godoc.org/github.com/koepkeca/mysqlMgr?status.svg)](https://godoc.org/github.com/koepkeca/mysqlMgr)
+
 # Overview
 
 mysqlUtil is a library which wraps database connections and prepared statments in a single data structure which is safe for concurrent use.
@@ -39,9 +41,6 @@ _ = s.AddStmt("statement","INSERT INTO table (value1, value2) VALUES (?,?)")
 stmt, _ := s.GetStmt("statement")
 s.Close()
 ```
-
-# Documentation
-[API Documentation](https://godoc.org/github.com/koepkeca/mysqlMgr)
 
 # Example program
 
