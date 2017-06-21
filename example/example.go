@@ -41,8 +41,14 @@ func main() {
 	e = s.AddStmt("truncate", "TRUNCATE example_table")
 	log.Printf("Truncating table")
 	trunc, e := s.GetStmt("truncate")
+	if e != nil {
+		panic(e)
+	}
 	trunc.Exec()
 	stmt, e := s.GetStmt("test")
+	if e != nil {
+		panic(e)
+	}
 	log.Printf("Loading random data into database sequentially")
 	for _, next := range testDataSet {
 		stmt.Exec(next.example_data_1, next.example_data_2, next.example_data_3, next.example_data_4)
