@@ -8,6 +8,7 @@ import (
 	"io/ioutil"
 	"time"
 
+	//This blank import is required see: https://github.com/go-sql-driver/mysql#usage
 	_ "github.com/go-sql-driver/mysql"
 )
 
