@@ -8,10 +8,10 @@ import (
 )
 
 type dataElement struct {
-	example_data_1 string
-	example_data_2 string
-	example_data_3 int32
-	example_data_4 int32
+	exampleDataOne   string
+	exampleDataTwo   string
+	exampleDataThree int32
+	exampleDataFour  int32
 }
 
 type randomDataPool struct {
@@ -35,9 +35,9 @@ func (r *randomDataPool) Load() (e error) {
 
 func (r *randomDataPool) NewDataElement() (d dataElement) {
 	rand.Seed(time.Now().UTC().UnixNano())
-	d.example_data_1 = r.words[rand.Int63n(r.sz-1)]
-	d.example_data_2 = r.words[rand.Int63n(r.sz-1)]
-	d.example_data_3 = rand.Int31()
-	d.example_data_4 = rand.Int31()
+	d.exampleDataOne = r.words[rand.Int63n(r.sz-1)]
+	d.exampleDataTwo = r.words[rand.Int63n(r.sz-1)]
+	d.exampleDataThree = rand.Int31()
+	d.exampleDataFour = rand.Int31()
 	return
 }
