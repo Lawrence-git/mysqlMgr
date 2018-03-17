@@ -72,8 +72,8 @@ func (mc MysqlConn) GetStmt(n string) (sm *sql.Stmt, e error) {
 	ech := make(chan error)
 	mc.op <- func(c *store) {
 		if !c.stmtExists(n) {
-			ech <- fmt.Errorf("A Statement with the name %s does not exist in the store", n)
 			sch <- nil
+			ech <- fmt.Errorf("A Statement with the name %s does not exist in the store", n)
 			return
 		}
 		sch <- c.stmtMap[n]
